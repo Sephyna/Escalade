@@ -1,0 +1,60 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+          </ion-buttons>
+        <ion-title>Créer un secteur</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <form onsubmit="processForm(event)">
+        <ion-list lines="full" class="ion-no-margin ion-no-padding">
+            <ion-item>
+                <ion-label position="stacked">Nom du secteur
+                    <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" oninput="handleSecteurNameValue(event)"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Orientation</ion-label>
+                <ion-select cancel-text="Annuler" value="orientation" interface="action-sheet">
+                    <ion-select-option value="nord">Nord</ion-select-option>
+                    <ion-select-option value="sud">Sud</ion-select-option>
+                    <ion-select-option value="est">Est</ion-select-option>
+                    <ion-select-option value="ouest">Ouest</ion-select-option>
+                    <ion-select-option value="sud-ouest">Sud-ouest</ion-select-option>
+                    <ion-select-option value="nord-ouest">Nord-ouest</ion-select-option>
+                    <ion-select-option value="sud-est">Sud-est</ion-select-option>
+                    <ion-select-option value="nord-est">Nord-est</ion-select-option>
+                    <ion-select-option value="null">--</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Description du secteur</ion-label>
+                <ion-textarea></ion-textarea>
+            </ion-item>
+            <ion-item>
+                <ion-button (click)="selectImgSecteur()">Image du secteur</ion-button>
+
+            </ion-item>
+
+            <ion-item>
+                <ion-button (click)="selectTopoSecteur()">Topo du secteur</ion-button>
+
+            </ion-item>
+
+
+        </ion-list>
+        <ion-buttons>
+            <ion-button  Fill="solid"  color = "primary" (click)="createSecteur()">Créer un nouveau secteur</ion-button>
+
+
+        </ion-buttons>
+
+    </form>
+
+
+</ion-content>

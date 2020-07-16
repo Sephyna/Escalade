@@ -1,0 +1,132 @@
+<ion-app>
+    <ion-split-pane contentId="menu">
+
+        <ion-menu menuId="adminmenu" contentId="menu" side="end">
+            <ion-header>
+                <ion-toolbar>
+                    <ion-title>Menu</ion-title>
+                </ion-toolbar>
+            </ion-header>
+            <ion-content>
+                <ion-list>
+                    <ion-item>
+                        <ion-icon size="small" name="eye-outline"></ion-icon>
+                        <ion-label>Voies à analyser</ion-label>
+                    </ion-item>
+                    <ion-item routerLink = "/create-site">
+                        <ion-icon size="small" name="add-circle-outline"></ion-icon>
+                        <ion-label>Créer un nouveau site</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon size="small" name="person-add-outline"></ion-icon>
+                        <ion-label>Ajouter des droits</ion-label>
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-menu>
+
+        <ion-menu menuId="search" contentId="menu" side="start">
+            <ion-header>
+                <ion-toolbar>
+                    <ion-title>Recherche</ion-title>
+                </ion-toolbar>
+            </ion-header>
+            <ion-content>
+                <form>
+
+                    <ion-searchbar></ion-searchbar>
+
+                    <ion-list>
+                        <ion-radio-group value="nomType">
+                            <ion-list-header>
+                                <ion-label>Nom de </ion-label>
+                            </ion-list-header>
+
+                            <ion-item>
+                                <ion-label>Site</ion-label>
+                                <ion-radio slot="start" value="site"></ion-radio>
+                            </ion-item>
+
+                            <ion-item>
+                                <ion-label>Secteur</ion-label>
+                                <ion-radio slot="start" value="secteur"></ion-radio>
+                            </ion-item>
+
+                            <ion-item>
+                                <ion-label>Voie</ion-label>
+                                <ion-radio slot="start" value="voie"></ion-radio>
+                            </ion-item>
+                        </ion-radio-group>
+                    </ion-list>
+
+                    <ion-item>
+                        <ion-label>Type de milieu</ion-label>
+                        <ion-select cancel-text="Annuler" value="type-milieu" interface="action-sheet">
+                            <ion-select-option value="salle-escalade">Salle d'escalade</ion-select-option>
+                            <ion-select-option value="salle-blocs">Salle de blocs</ion-select-option>
+                            <ion-select-option value="site-escalade">site d'escalade</ion-select-option>
+                            <ion-select-option value="montagne">Montage</ion-select-option>
+                            <ion-select-option value="falaise">Falaise</ion-select-option>
+                            <ion-select-option value="rocher">Rocher</ion-select-option>
+                            <ion-select-option value="cascade">Cascade de glace</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Cotation(s)</ion-label>
+                        <ion-select multiple="true" cancel-text="Annuler" value="cotation" interface="action-sheet">
+                            <ion-select-option value="5a">5a</ion-select-option>
+                            <ion-select-option value="5a+">5a+</ion-select-option>
+                            <ion-select-option value="5b">5b</ion-select-option>
+                            <ion-select-option value="5b+">5b+</ion-select-option>
+                            <ion-select-option value="5c">5c</ion-select-option>
+                            <ion-select-option value="5c+">5c+</ion-select-option>
+                            <ion-select-option value="6a">6a</ion-select-option>
+                            <ion-select-option value="6a+">6a+</ion-select-option>
+                            <ion-select-option value="6b">6b</ion-select-option>
+                            <ion-select-option value="6b+">6b+</ion-select-option>
+                            <ion-select-option value="6c">6c</ion-select-option>
+                            <ion-select-option value="6c+">6c+</ion-select-option>
+                            <ion-select-option value="7a">7a</ion-select-option>
+                            <ion-select-option value="7a+">7a+</ion-select-option>
+                            <ion-select-option value="7b">7b</ion-select-option>
+                            <ion-select-option value="7b+">7b+</ion-select-option>
+                            <ion-select-option value="7c">7c</ion-select-option>
+                            <ion-select-option value="7c+">7c+</ion-select-option>
+                            <ion-select-option value="8a">8a</ion-select-option>
+                            <ion-select-option value="8a+">8a+</ion-select-option>
+                            <ion-select-option value="8b">8b</ion-select-option>
+                            <ion-select-option value="8b+">8b+</ion-select-option>
+                            <ion-select-option value="8c">8c</ion-select-option>
+                            <ion-select-option value="8c+">8c+</ion-select-option>
+                            <ion-select-option value="9a">9a</ion-select-option>
+                            <ion-select-option value="9a+">9a+</ion-select-option>
+                            <ion-select-option value="9b">9b</ion-select-option>
+                            <ion-select-option value="9b+">9b+</ion-select-option>
+                            <ion-select-option value="9c">9c</ion-select-option>
+                            <ion-select-option value="9c+">9c+</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="stacked">Ville</ion-label>
+                        <ion-input type="text"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="stacked">Longitude</ion-label>
+                        <ion-input type="text"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="stacked">Latitude</ion-label>
+                        <ion-input type="text"></ion-input>
+                    </ion-item>
+
+                    <ion-button>Rechercher</ion-button>
+                </form>
+            </ion-content>
+        </ion-menu>
+
+
+
+        <ion-router-outlet id="menu"></ion-router-outlet>
+    </ion-split-pane>
+
+</ion-app>
