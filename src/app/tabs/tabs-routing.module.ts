@@ -35,7 +35,7 @@ const routes: Routes = [
     path: 'profil',
     
 
-    loadChildren: () => import('../profil/profil.module').then( m => m.ProfilPageModule)
+    loadChildren: () => import('../profil/profil.module').then( m => m.ProfilPageModule),canLoad : [AuthentificationGuard]
     },
 
     {
@@ -47,8 +47,7 @@ const routes: Routes = [
 
       {
         path: 'contact',
-        loadChildren: () => import('../contact/contact.module').then(m => m.ContactPageModule),
-        //canLoad : [AuthentificationGuard],
+        loadChildren: () => import('../contact/contact.module').then(m => m.ContactPageModule)
       },
 
 

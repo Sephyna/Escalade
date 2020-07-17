@@ -30,7 +30,7 @@ export class TabsPage implements OnInit {
     
   //allows you to search for the "connexion" routing at the root of the app
   //If we use tabs-routing-module, we cannot simulate a refresh of tabs because they are at the root of the project
-  onConnectPage(){
+  goToConnectPage(){
     this.route.navigate(['connexion'])
   }
 
@@ -59,6 +59,7 @@ export class TabsPage implements OnInit {
     this.AuthService.logout();
     this.refresh();
     this.toastDisconnect();
+    this.goToDisconnectPage();
 
   }
 
@@ -69,6 +70,10 @@ export class TabsPage implements OnInit {
         duration: 3000
     });
     toast.present();
+  }
+ //allows you to search for the "tabs" routing at the root of the app and refresh rights of visitor
+  goToDisconnectPage(){
+    this.route.navigate([''])
   }
   
   ngOnInit() {

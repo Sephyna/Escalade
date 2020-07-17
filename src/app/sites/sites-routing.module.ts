@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { SitesPage } from './sites.page';
+import { AuthentificationGuard } from '../authentification/authentification.guard';
 
 const routes: Routes = [
   {
@@ -10,8 +11,8 @@ const routes: Routes = [
   },
   {
     path: 'edit-site',
-    loadChildren: () => import('./edit-site/edit-site.module').then( m => m.EditSitePageModule)
-  },
+    loadChildren: () => import('./edit-site/edit-site.module').then( m => m.EditSitePageModule), canLoad : [AuthentificationGuard]
+  }
   
   
 ];

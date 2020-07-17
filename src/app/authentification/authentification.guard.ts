@@ -1,3 +1,5 @@
+//protection des pages en fonction du status du visiteur/membre
+
 import { Injectable } from '@angular/core';
 import { CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';

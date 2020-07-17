@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthentificationGuard } from './authentification/authentification.guard';
 
 const routes: Routes = [
 
@@ -14,12 +15,14 @@ const routes: Routes = [
   },
   {
     path: 'create-site',
-    loadChildren: () => import('./sites/create-site/create-site.module').then( m => m.CreateSitePageModule)
+    loadChildren: () => import('./sites/create-site/create-site.module').then( m => m.CreateSitePageModule), canLoad : [AuthentificationGuard]
   },
   {
     path: 'connexion',
     loadChildren: () => import('./authentification/authentification.module').then( m => m.AuthentificationPageModule)
-  }
+  },
+ 
+
   
 ];
 

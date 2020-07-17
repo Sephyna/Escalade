@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
 import { PopoverController } from '@ionic/angular';
 import { RatingSitePage } from './rating-site/rating-site.page';
+import { AuthentificationService } from '../authentification/authentification.service';
 
 
 
@@ -12,9 +13,14 @@ import { RatingSitePage } from './rating-site/rating-site.page';
 })
 export class SecteursPage implements OnInit {
 
-  constructor(private popoverController: PopoverController) { }
+  constructor(private popoverController: PopoverController,
+              private authService : AuthentificationService) { }
 
   
+   //user is connected ? true of false
+   userAuth : boolean ;
+
+
 
   async popupNotation() {
     
@@ -230,5 +236,14 @@ export class SecteursPage implements OnInit {
     
     });
   }
+
+
+   //when entring at /sites => refresh status user
+   ionViewWillEnter() {
+    this.userAuth = this.authService.userAuth;
+   } 
+
+
+  
 
 }

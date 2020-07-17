@@ -5,7 +5,7 @@
             <ion-back-button></ion-back-button>
           </ion-buttons>
         <ion-buttons slot="end">
-            <ion-button  [routerLink]="['edit-site']" expand="full">
+            <ion-button [hidden]="!userAuth" [routerLink]="['edit-site']" expand="full">
                 <ion-icon expand="full" name="settings-sharp"></ion-icon>
             </ion-button>
         </ion-buttons>
@@ -49,7 +49,7 @@
     <div class="note">
 
         <ion-toolbar>
-            <ion-icon size="large" name="star"></ion-icon>
+            <ion-icon class = "ion-icon-star" size="large" name="star"></ion-icon>
             <ion-icon size="large" name="star"></ion-icon>
             <ion-icon size="large" name="star"></ion-icon>
             <ion-icon size="large" name="star-half-outline"></ion-icon>
@@ -59,7 +59,7 @@
         <ion-text> 3.75/5 (XXX Avis)</ion-text>
         <br>
 
-        <ion-button  class="button-note" (click)="popupNotation()">Noter le site</ion-button>
+        <ion-button [hidden]="!userAuth" class="button-note" (click)="popupNotation()">Noter le site</ion-button>
     </div>
 
     <ion-card>
