@@ -1,0 +1,19 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthentificationService {
+  public userAuth = false;
+
+  constructor() { }
+
+  login(){
+    this.userAuth = true;
+    console.log(this.userAuth)
+  }
+
+  logout(){
+    this.userAuth = false
+  }
+}

@@ -1,0 +1,23 @@
+<ion-content>
+<div class ="content-popup-note-site">
+   
+    <ion-buttons>
+        <ion-button fill="clear"  *ngFor="let current of [1, 2, 3, 4, 5]; let i = index" (click)="onClick(i+1)">
+            <ion-icon slot="icon-only" name="star" [class.active-star]="(i + 1 <= rate)"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <ion-grid>
+        <ion-row>
+            <ion-col class="ion-text-start"> Site décevant</ion-col>
+            <ion-col class="ion-text-end"> Excellent site</ion-col>
+        </ion-row>
+    </ion-grid>
+
+
+    <ion-button [disabled]="!selectStar" class="button-note ion-text-center" (click) ="addRatingSite()">Noter le site</ion-button>
+
+
+</div>
+
+<div color= "danger" class="text-send-note"></div>
+</ion-content>

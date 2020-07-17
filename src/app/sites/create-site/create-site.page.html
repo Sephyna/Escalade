@@ -1,0 +1,80 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+          </ion-buttons>
+        <ion-title>Créer un site</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <form action="new-secteur" method="get">
+        <ion-list lines="full" class="ion-no-margin ion-no-padding">
+            <ion-item>
+                <ion-label position="stacked">Nom du site
+                    <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Type de milieu</ion-label>
+                <ion-select cancel-text="Annuler" value="type-milieu" interface="action-sheet">
+                    <ion-select-option value="salle-escalade">Salle d'escalade</ion-select-option>
+                    <ion-select-option value="salle-blocs">Salle de blocs</ion-select-option>
+                    <ion-select-option value="site-escalade">site d'escalade</ion-select-option>
+                    <ion-select-option value="montagne">Montage</ion-select-option>
+                    <ion-select-option value="falaise">Falaise</ion-select-option>
+                    <ion-select-option value="rocher">Rocher</ion-select-option>
+                    <ion-select-option value="cascade">Cascade de glace</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="stacked">Altitude
+                </ion-label>
+                <ion-input type="number"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Type de roche</ion-label>
+                <ion-select cancel-text="Annuler" value="roche" interface="action-sheet">
+                    <ion-select-option value="calcaire">Calcaire</ion-select-option>
+                    <ion-select-option value="granite">Granite</ion-select-option>
+                    <ion-select-option value="gneiss">Gneiss</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="stacked">Adresse</ion-label>
+                <ion-input placeholder="Latitude"></ion-input>
+                <ion-input placeholder="Longitude"></ion-input>
+                <ion-input placeholder="Numéro de voie"></ion-input>
+                <ion-input placeholder="Voie"></ion-input>
+                <ion-input placeholder="Code postal"></ion-input>
+                <ion-input placeholder="Ville"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Description du site</ion-label>
+                <ion-textarea></ion-textarea>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Accès au site</ion-label>
+                <ion-textarea></ion-textarea>
+            </ion-item>
+            <ion-item>
+                <ion-button (click)="selectImgSite()">Image du site</ion-button>
+
+            </ion-item>
+
+
+        </ion-list>
+
+        <ion-button expand="full" (click)="validNewSite()">Ajouter le nouveau secteur</ion-button>
+
+    </form>
+
+
+</ion-content>

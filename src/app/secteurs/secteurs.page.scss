@@ -1,0 +1,73 @@
+ion-title {
+    font-size: 12px
+}
+
+ion-card-header {
+    padding: 5px;
+}
+
+ion-card {
+    margin: 8px;
+    border: 1px solid #ddd
+}
+
+ion-card-title {
+    text-align: center;
+    padding-top: 2px;
+    font-size: 12px
+}
+
+ion-label {
+    font-size: 10px
+}
+
+ion-card-content {
+    font-size: 10px;
+    padding: 5px;
+}
+
+ion-col {
+    font-size: 10px;
+    padding: 3px
+}
+
+.note {
+    text-align: center;
+    line-height: 10px;
+}
+
+.button-note {
+    padding: 5px
+}
+
+.note>ion-text {
+    font-size: 11px
+}
+
+ion-toolbar {
+    padding: 0
+}
+
+.acces-text {
+    font-size: 12px;
+    padding: 2px 6px
+}
+
+.histogramme {
+    margin: 0px 10px;
+    display: block
+}
+
+.img-secteur {
+    height: 6em;
+}
+
+.img-secteur>img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.alert-notation>ion-icon {
+    font-size: 300px!important;
+    background-color: red
+}

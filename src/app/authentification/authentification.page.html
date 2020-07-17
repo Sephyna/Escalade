@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Connexion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form onsubmit="processForm(event)">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">Email
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Mot de passe 
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required type="text"></ion-input>
+      </ion-item>
+
+    </ion-list>
+    <ion-button expand="full" color = "primary" fill="solid" (click)="onConnect()" [routerLink]="['/tabs']">Connexion</ion-button>
+  </form>
+</ion-content>
