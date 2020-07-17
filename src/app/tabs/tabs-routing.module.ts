@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { TabsPage } from './tabs.page';
 import { AuthentificationGuard } from '../authentification/authentification.guard';
-import { AuthentificationPage } from '../authentification/authentification.page';
+
+
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
   {
     path: 'profil',
     
+
     loadChildren: () => import('../profil/profil.module').then( m => m.ProfilPageModule)
     },
 
@@ -48,6 +50,7 @@ const routes: Routes = [
         loadChildren: () => import('../contact/contact.module').then(m => m.ContactPageModule),
         //canLoad : [AuthentificationGuard],
       },
+
 
       {
         path: '',

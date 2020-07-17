@@ -12,6 +12,7 @@ import { ToastController, AlertController } from '@ionic/angular';
 export class TabsPage implements OnInit {
 
 
+
   constructor(private alertController : AlertController,  private toastController : ToastController, private AuthService : AuthentificationService, private route : Router) { }
 
   //user is connected ? true of false
