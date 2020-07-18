@@ -24,7 +24,7 @@ const routes: Routes = [
   {
     path: 'edit-site',
     loadChildren: () => import('../sites/edit-site/edit-site.module').then( m => m.EditSitePageModule), canLoad : [AuthentificationGuard]
-  },
+  }
 
   
 ];

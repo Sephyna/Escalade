@@ -17,11 +17,9 @@ export class AuthentificationPage implements OnInit {
 
   onConnect(){
     this.authService.login();
-   // this.router.navigate(['/tabs'])
   }
 
   onDisconnect(){
     this.authService.logout();
-   // this.router.navigate(['/tabs'])
   }
 }

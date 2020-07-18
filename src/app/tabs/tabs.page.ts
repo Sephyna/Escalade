@@ -73,7 +73,7 @@ export class TabsPage implements OnInit {
   }
  //allows you to search for the "tabs" routing at the root of the app and refresh rights of visitor
   goToDisconnectPage(){
-    this.route.navigate([''])
+    this.route.navigate(['/tabs'])
   }
   
   ngOnInit() {

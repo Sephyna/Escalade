@@ -38,6 +38,16 @@ export class AppComponent {
 
   };
 
+  ionWillOpen() {
+    this.userAuth = this.authService.userAuth;
+
+  };
+
+  ionDidOpen() {
+    this.userAuth = this.authService.userAuth;
+
+  };
+
   authentificateUser() {
     this.userAuth = this.authService.userAuth;
   } 
@@ -45,8 +55,8 @@ export class AppComponent {
 
 
 
-
+}
 
 
   
-}
+
