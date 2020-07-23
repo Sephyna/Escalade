@@ -14,36 +14,17 @@ const routes: Routes = [
     children: [
       {
         path: 'sites',
-         children : [
-          {
-            path : '',
-            loadChildren: () => import('../sites/sites.module').then(m => m.SitesPageModule)
-         },
+        loadChildren: () => import('../sites/sites.module').then(m => m.SitesPageModule)
+      },
 
-         {
-          path: 'secteurs',
-          
-          loadChildren: () => import('../secteurs/secteurs.module').then( m => m.SecteursPageModule)
-          },
-
-           
-      
-    ]
-  },
-  
-  {
-    path: 'profil',
-    
-
-    loadChildren: () => import('../profil/profil.module').then( m => m.ProfilPageModule),canLoad : [AuthentificationGuard]
-    },
-
-    {
-      path: 'inscription',
-      
-      loadChildren: () => import('../inscription/inscription.module').then( m => m.InscriptionPageModule)
-    },
-
+      {
+        path: 'profil',
+        loadChildren: () => import('../profil/profil.module').then( m => m.ProfilPageModule),canLoad : [AuthentificationGuard]
+      },
+      {
+        path: 'inscription',
+        loadChildren: () => import('../inscription/inscription.module').then( m => m.InscriptionPageModule)
+      },
 
       {
         path: 'contact',
@@ -57,7 +38,8 @@ const routes: Routes = [
         pathMatch: 'full'
       }
     ]
-  }
+  },
+  
 ];
 
 @NgModule({

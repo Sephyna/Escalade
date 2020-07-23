@@ -20,17 +20,20 @@ ion-grid {
 }
 
 ion-col {
-    font-size: 10px;
+    font-size: 11px;
     padding: 1px;
-    margin: 0px
+    margin: 1px
 }
 
 ion-row {
-    padding: 1px
+    padding: 0 px
 }
 
 .img-site {
     height: 7em;
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center;
 }
 
 .img-site>img {

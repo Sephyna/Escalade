@@ -11,8 +11,8 @@
         </ion-buttons>
 
 
-        <ion-title>
-            Nom du site numéro 1
+        <ion-title *ngIf="site">
+           {{site.nom}}
         </ion-title>
 
     </ion-toolbar>
@@ -20,32 +20,40 @@
 </ion-header>
 
 <ion-content>
-
-    <ion-grid>
+<div *ngIf="site">
+     <ion-grid>
         <ion-row>
-            <ion-col size="2">
-                <b>Coord :</b>
+            <ion-col size="6">
+                <div *ngIf = "site.milieuArtificiel == true else milieuNaturel">
+                    <b>Coord : </b>
+                    {{site.numAdresse}} 
+                    {{site.voieAdresse}} <br>
+                    {{site.villeAdresse}}
+                </div>
+                 <ng-template #milieuNaturel>
+                    <b>Lat : </b> {{site.latitude}} <br>
+                    <b>Long : </b> {{site.longitude}} <br>
+                    {{site.villeAdresse}}
+                 </ng-template> 
+
 
             </ion-col>
-            <ion-col size="4">
-                11 avenue de l'Europe <br/> 31000 Toulouse
-
-            </ion-col>
-            <ion-col size="4">
-                <b>Type de roche : </b> <br/>
-                <b>Altitude : </b> <br/>
-                <b>Milieu : </b> <br/>
-            </ion-col>
-            <ion-col size="2">
-                Granite <br/> 1200m <br/> Cascade <br/>
+            
+            <ion-col size="6">
+                <ion-text *ngIf = "site.roche"><b >Type de roche : </b>  {{site.roche}} <br/></ion-text>
+                <ion-text *ngIf = "site.altitude"><b >Altitude : </b>  {{site.altitude}} <br/></ion-text>
+                <ion-text *ngIf = "site.milieu"><b >Milieu : </b>  {{site.milieu}} <br/></ion-text>
             </ion-col>
         </ion-row>
     </ion-grid>
     <div class="acces-text">
         <ion-text>
-            <b>Accès au site :</b><br/> Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est magni eveniet dolor placeat pariatur expedita modi, ipsum quas, autem qui vero rem recusandae repudiandae neque enim eos, nulla blanditiis.
+            <b>Accès au site :</b><br/> 
+            {{site.acces}}
         </ion-text>
     </div>
+</div>
+   
     <div class="note">
 
         <ion-toolbar>
@@ -62,6 +70,21 @@
         <ion-button [hidden]="!userAuth" class="button-note" (click)="popupNotation()">Noter le site</ion-button>
     </div>
 
+    <ion-card *ngFor = "let secteur of secteurs">
+        <ion-card-header>
+            <ion-card-title>{{secteur.nom}}</ion-card-title>
+            <ion-label *ngIf ="secteur.orientation"> <b>Orientation : </b> {{secteur.orientation}} </ion-label>
+        </ion-card-header>
+        <div class="img-secteur"  *ngIf ="secteur.image" [ngStyle]="{'background-image': 'url('+secteur.image+')'}">
+        </div>
+        <ion-card-content>
+            {{secteur.description}}
+        </ion-card-content>
+        <!-- <div class="histogramme"><canvas id="cotations-voies"></canvas></div> -->
+
+    </ion-card>
+
+    
     <ion-card>
         <ion-card-header>
             <ion-card-title>Nom du secteur numéro un</ion-card-title>
@@ -78,22 +101,6 @@
         <div class="histogramme"><canvas id="cotations-voies"></canvas></div>
 
     </ion-card>
-    <ion-card>
-        <ion-card-header>
-            <ion-card-title>Nom du secteur numéro un</ion-card-title>
-            <ion-label> <b>Orientation : </b> Sud-ouest </ion-label>
-        </ion-card-header>
-        <div class="img-secteur">
-            <img src="https://picsum.photos/id/237/800/110">
-        </div>
-        <ion-card-content>
-            Keep close to Nature's heart... and break clear away, once in awhile, and climb a mountain or spend a week in the woods. Wash your spirit clean.
 
-        </ion-card-content>
-
-        <div class="histogramme"><canvas id="cotations-voies2"></canvas></div>
-
-    </ion-card>
-
-    <ion-button [routerLink]="['create-secteur']" expand="full">Créer un nouveau secteur pour le site</ion-button>
+    <ion-button [hidden]="!userAuth" [routerLink]="['create-secteur']" expand="full">Créer un secteur pour ce site</ion-button>
 </ion-content>

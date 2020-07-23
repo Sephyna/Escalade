@@ -1,11 +1,4 @@
-<ion-list *ngFor = "let customer of customers">
-
-    {{customer.name}}
-    
-  </ion-list>
-  
-  
-  <ion-header>
+ <ion-header>
     <ion-toolbar>
 
         <ion-buttons slot="start">
@@ -25,64 +18,37 @@
 
 <ion-content>
 
-    <ion-card [routerLink]="['secteurs']">
+    <ion-card *ngFor = "let site of sites" [routerLink]="['site', site.id]">
         <ion-card-header>
-            <ion-card-title>Card Title</ion-card-title>
+            <ion-card-title> {{site.nom}} </ion-card-title>
             <ion-grid>
                 <ion-row>
-                    <ion-col size="2">
-                        <b>Coord :</b>
+                    <ion-col >
+                        <div *ngIf = "site.milieuArtificiel == true else milieuNaturel">
+                            <b>Coord : </b>
+                            {{site.numAdresse}} 
+                            {{site.voieAdresse}} <br>
+                            {{site.villeAdresse}}
+                        </div>
+                         <ng-template #milieuNaturel>
+                            <b>Lat : </b> {{site.latitude}} <br>
+                            <b>Long : </b> {{site.longitude}} <br>
+                            {{site.villeAdresse}}
+                         </ng-template> 
 
-                    </ion-col>
-                    <ion-col size="4">
-                        11 avenue de l'Europe 31000 Toulouse
+                    </ion-col>  
 
-                    </ion-col>
-                    <ion-col size="2">
+                    <ion-col  class="ion-text-right">
                         <b>Milieu : </b>
-                    </ion-col>
-                    <ion-col size="4">
-                        Salle d'escalade
+                        {{site.milieu}}
                     </ion-col>
                 </ion-row>
             </ion-grid>
         </ion-card-header>
-        <div class="img-site">
-            <img src="https://picsum.photos/id/237/800/110">
+        <div class="img-site" [ngStyle]="{'background-image': 'url('+site.image+')'}">
         </div>
         <ion-card-content>
-            Keep close to Nature's heart... and break clear away, once in awhile, and climb a mountain or spend a week in the woods. Wash your spirit clean.
-        </ion-card-content>
-    </ion-card>
-
-
-    <ion-card>
-        <ion-card-header>
-            <ion-card-title>Card Title</ion-card-title>
-            <ion-grid>
-                <ion-row>
-                    <ion-col size="2">
-                        <b>Coord :</b>
-
-                    </ion-col>
-                    <ion-col size="4">
-                        11 avenue de l'Europe 31000 Toulouse
-
-                    </ion-col>
-                    <ion-col size="2">
-                        <b>Milieu : </b>
-                    </ion-col>
-                    <ion-col size="4">
-                        Salle d'escalade
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-card-header>
-        <div class="img-site">
-            <img src="https://picsum.photos/id/237/800/110">
-        </div>
-        <ion-card-content>
-            Keep close to Nature's heart... and break clear away, once in awhile, and climb a mountain or spend a week in the woods. Wash your spirit clean.
+            {{site.description}}
         </ion-card-content>
     </ion-card>
 

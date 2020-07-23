@@ -62,9 +62,10 @@ ion-toolbar {
     height: 6em;
 }
 
-.img-secteur>img {
-    height: 100%;
-    object-fit: cover;
+.img-secteur {
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center;
 }
 
 .alert-notation>ion-icon {

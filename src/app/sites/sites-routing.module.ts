@@ -12,7 +12,11 @@ const routes: Routes = [
   {
     path: 'edit-site',
     loadChildren: () => import('./edit-site/edit-site.module').then( m => m.EditSitePageModule), canLoad : [AuthentificationGuard]
-  }
+  },
+  {
+    path: 'site/:id',
+    loadChildren: () => import('../secteurs/secteurs.module').then( m => m.SecteursPageModule)
+  },
 
   
   

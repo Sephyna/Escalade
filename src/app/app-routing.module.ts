@@ -20,7 +20,7 @@ const routes: Routes = [
   {
     path: 'connexion',
     loadChildren: () => import('./authentification/authentification.module').then( m => m.AuthentificationPageModule)
-  },
+  }
  
 
   
