@@ -11,5 +11,5 @@ export interface IVoie {
     engagement : string;
     etat : string;
     cotation : string;
-    
+
 }

@@ -55,6 +55,21 @@ class   SiteManager extends BaseModel {
         return json_encode($data);
     }
 
+
+    function createSite ($data) {
+        if($data) 
+        {  
+            $con = $this->getBdd();
+            $sql ='INSERT INTO sites (nom_site, image_site, acces_site, description_site, id_roche, id_milieu) 
+                        VALUES   ("'.$data['nom'].','.$data['image'].','.$data['acces'].','.$data['description'].','.$data['roche'].','.$data['milieu'].'")'; 
+            $result = mysqli_query($con,$sql) ;
+            
+
+
+
+        }
+        
+    }
     
 
 }

@@ -9,70 +9,70 @@
 
 <ion-content>
 
-    <form action="new-secteur" method="get">
+    <form (ngSubmit)="submit()" [formGroup] ="createSiteForm">
         <ion-list lines="full" class="ion-no-margin ion-no-padding">
             <ion-item>
-                <ion-label position="stacked">Nom du site
-                    <ion-text color="danger">*</ion-text>
-                </ion-label>
-                <ion-input required type="text"></ion-input>
+                <ion-label position="stacked">Nom du site<ion-text color="danger">*</ion-text></ion-label>
+                <ion-input formControlName="nom" required type="text"></ion-input>
+                <div *ngFor = "let error of errorMessage.nom">
+                    <!-- <ion-content *ngIf = "nom.hasError(error.type) $$"></ion-content> -->
+                </div>
             </ion-item>
 
             <ion-item>
-                <ion-label>Type de milieu</ion-label>
-                <ion-select cancel-text="Annuler" value="type-milieu" interface="action-sheet">
-                    <ion-select-option value="salle-escalade">Salle d'escalade</ion-select-option>
-                    <ion-select-option value="salle-blocs">Salle de blocs</ion-select-option>
-                    <ion-select-option value="site-escalade">site d'escalade</ion-select-option>
-                    <ion-select-option value="montagne">Montage</ion-select-option>
-                    <ion-select-option value="falaise">Falaise</ion-select-option>
-                    <ion-select-option value="rocher">Rocher</ion-select-option>
-                    <ion-select-option value="cascade">Cascade de glace</ion-select-option>
+                <ion-label>Type de milieu<ion-text color="danger">*</ion-text></ion-label>
+                <ion-select cancel-text="Annuler"  interface="action-sheet"  formControlName = "milieu">  
+                    <ion-select-option value="1">Salle d'escalade</ion-select-option>
+                    <ion-select-option value="2">Salle de blocs</ion-select-option>
+                    <ion-select-option value="3">site d'escalade</ion-select-option>
+                    <ion-select-option value="4">Montage</ion-select-option>
+                    <ion-select-option value="5">Falaise</ion-select-option>
+                    <ion-select-option value="6">Rocher</ion-select-option>
+                    <ion-select-option value="7">Cascade de glace</ion-select-option>
                 </ion-select>
             </ion-item>
 
             <ion-item>
-                <ion-label position="stacked">Altitude
-                </ion-label>
-                <ion-input type="number"></ion-input>
+                <ion-label position="stacked" >Altitude (mètre)</ion-label>
+                <ion-input formControlName="altitude" type="number"></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label>Type de roche</ion-label>
-                <ion-select cancel-text="Annuler" value="roche" interface="action-sheet">
-                    <ion-select-option value="calcaire">Calcaire</ion-select-option>
-                    <ion-select-option value="granite">Granite</ion-select-option>
-                    <ion-select-option value="gneiss">Gneiss</ion-select-option>
+                <ion-select cancel-text="Annuler" value="roche" interface="action-sheet" formControlName = "roche">
+                    <ion-select-option value="1">Calcaire</ion-select-option>
+                    <ion-select-option value="2">Granite</ion-select-option>
+                    <ion-select-option value="3">Gneiss</ion-select-option>
                 </ion-select>
             </ion-item>
-            <ion-item>
+            <ion-item formGroupName = "adresse">
                 <ion-label position="stacked">Adresse</ion-label>
-                <ion-input placeholder="Latitude"></ion-input>
-                <ion-input placeholder="Longitude"></ion-input>
-                <ion-input placeholder="Numéro de voie"></ion-input>
-                <ion-input placeholder="Voie"></ion-input>
-                <ion-input placeholder="Code postal"></ion-input>
-                <ion-input placeholder="Ville"></ion-input>
+                <ion-input placeholder="Latitude"  formControlName = "latitude"></ion-input>
+                <ion-input placeholder="Longitude"  formControlName = "longitude"></ion-input>
+                <ion-input placeholder="Numéro de voie"  formControlName = "numAdresse"></ion-input>
+                <ion-input placeholder="Voie"  formControlName = "voieAdresse"></ion-input>
+                <ion-input placeholder="Code postal"  formControlName = "cpAdresse"></ion-input>
+                <ion-input placeholder="Ville"  formControlName = "villeAdresse"><ion-text color="danger">*</ion-text></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label position="floating">Description du site</ion-label>
-                <ion-textarea></ion-textarea>
+                <ion-textarea  formControlName = "description"></ion-textarea>
             </ion-item>
 
             <ion-item>
                 <ion-label position="floating">Accès au site</ion-label>
-                <ion-textarea></ion-textarea>
+                <ion-textarea  formControlName = "acces"></ion-textarea>
             </ion-item>
             <ion-item>
-                <ion-button (click)="selectImgSite()">Image du site</ion-button>
-
+                <ion-label>Image du site</ion-label> <br>
+                <ion-input type="file" accept="image/*" (change)="changeListenerImage($event)"></ion-input>
             </ion-item>
 
 
         </ion-list>
 
-        <ion-button expand="full" (click)="validNewSite()">Ajouter le nouveau site</ion-button>
+        <ion-button type= "submit" expand="full" [disabled]="!createSiteForm.valid">Ajouter le nouveau site</ion-button>
 
     </form>
 

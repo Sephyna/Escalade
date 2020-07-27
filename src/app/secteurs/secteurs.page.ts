@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
 import { PopoverController } from '@ionic/angular';
 import { RatingSitePage } from './rating-site/rating-site.page';
@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IVoie } from '../interfaces/voie';
 import { Subscription } from 'rxjs';
 import { VoiesService } from '../services/voies.service';
+import { HistogramComponent } from './histogram/histogram.component';
 
 
 
@@ -22,7 +23,8 @@ import { VoiesService } from '../services/voies.service';
 
 
 export class SecteursPage implements OnInit, OnDestroy {
-
+  @ViewChild(HistogramComponent)
+  private histogramComponent: HistogramComponent;
   private secteurs : ISecteur [] = [];
 
   private site : ISite;
@@ -43,12 +45,15 @@ export class SecteursPage implements OnInit, OnDestroy {
   private reducedCotationSimplesVoies : string;
   private reducedCotationGrandesVoies : string;
 
-
+  private IdSecteur : number;
 
 
   //user is connected ? true of false
   private userAuth : boolean ;
 
+
+  private siteDataProcessed : boolean = false;
+  private secteurDataProcessed : boolean = false;
 
   constructor(private popoverController: PopoverController,
               private authService : AuthentificationService,
@@ -69,14 +74,39 @@ export class SecteursPage implements OnInit, OnDestroy {
   ngOnInit() 
   {
     this.getIdSite();
-    const siteData = this.ProcessSiteData(this.siteId);
+    this.ProcessSiteData(this.siteId);
     this.ProcessSecteurData(this.siteId);
     this.showChart(this.secteursId, this.reducedCotationSimplesVoies, this.reducedCotationGrandesVoies, this.reducedCotationGrandesVoies);
     
-
     
   };
 
+  checkForChartDataProcess()
+  {
+    if(this.siteDataProcessed && this.secteurDataProcessed && this.histogramComponent.getViewInited())
+    {
+      //wow i can do stuff
+      console.log(this.secteurs)
+      
+      this.histogramComponent.showChart();
+
+
+
+      this.setSiteDataProcessed(false);
+      this.setSecteurDataProcessed(false);
+    }
+  }
+
+  setSecteurDataProcessed(value: boolean)
+  {
+    this.secteurDataProcessed = value;
+    this.checkForChartDataProcess();
+  }
+  setSiteDataProcessed(value: boolean)
+  {
+    this.siteDataProcessed = value;
+    this.checkForChartDataProcess();
+  }
   getIdSite () 
   {
     this.activatedRoute.paramMap.subscribe(paramMap =>{
@@ -90,27 +120,29 @@ export class SecteursPage implements OnInit, OnDestroy {
 
   ProcessSiteData(idSite : number)
   {
-    this.siteService.getSite(idSite).subscribe(data => {
+    this.siteService.getSite(idSite).subscribe((data, origin = this) => {
       const req = data;
       //comme la requete donne un tableau d'objets, je souhaite retrouver les données de sa première ligne, étant le seul résultat. 
       this.site = req[0];
-
+      origin.setSiteDataProcessed(true);
+      
      });
   }
 
   ProcessSecteurData (idSite : number)
   {
-    this.secteurService.getSecteurs(idSite).subscribe(data => {
+    this.secteurService.getSecteurs(idSite).subscribe((data, origin = this) => {
     this.secteurs = data;
     // pour chaque secteur
-        for (let secteur of this.secteurs) 
-        {
-          this.processCotationSimplesVoies (secteur.id);
-          this.processCotationGrandesVoies (secteur.id);
-          this.processCotationBlocs (secteur.id) 
-          this.generateHistogram(secteur.id,this.reducedCotationSimplesVoies,this.reducedCotationGrandesVoies,this.reducedCotationBlocs)
-          
-       }
+    for (let secteur of this.secteurs) 
+    {
+      this.processCotationSimplesVoies (secteur.id);
+      this.processCotationGrandesVoies (secteur.id);
+      this.processCotationBlocs (secteur.id) 
+      this.generateHistogram(secteur.id,this.reducedCotationSimplesVoies,this.reducedCotationGrandesVoies,this.reducedCotationBlocs)
+      origin.setSecteurDataProcessed(true);  
+    }
+    
   });
 
   }

@@ -1,0 +1,80 @@
+#INSERT roches
+\sql INSERT INTO roches(nom_roche) VALUES ("calcaire"),("granite"),("gneiss");
+
+#INSERT milieux
+\sql INSERT INTO milieux(nom_milieu, artificiel_milieu )VALUES ("salle d'escalade", 1) ,("salle de bloc", 1 ),("site d'escalade",0),("montagne",0),("falaise",0),("rocher",0),("cascade de glace",0);
+
+#INSERT localisations
+\sql INSERT INTO localisations (num_localisation, voie_localisation, cp_localisation, ville_localisation, lat_localisation, long_localisation) VALUES (5,"rue jean rodier","31400","Toulouse",NULL,NULL),(2,"rue de l'Egalite","31200", "Toulouse",NULL,NULL),(NULL,NULL,NULL,"Bédeilhac-et-Aynat",42.868347, 1.561528),(NULL,NULL,NULL,"Surba",42.864536,1.579821);
+
+
+
+#INSERT sites
+\sql INSERT INTO sites(nom_site,image_site, acces_site, altitude_site, description_site, id_roche, id_milieu, id_localisation) VALUES ("Altissimio Toulouse Montaudran", "https://picsum.photos/seed/picsum/1000/500", "description de comment on accède à la salle d'Altissimo Toulouse (à supprimer lors de l'édition)", NULL, "Salle d'escalade situé à Toulouse",NULL,1,1),("Blockout Toulouse", "https://picsum.photos/seed/picsum/1000/1000", "description de l'accès", NULL , "Salle d'escalade situé à Toulouse",NULL,1,2),("Calamès", "https://picsum.photos/seed/picsum/1000/500", "Du parking de Bédeilhac, prendre la rue qui monte dans le village, passer au pied de l'église puis, 30 m après celle-ci, tourner à droite (balisage jaune et vert) et suivre le sentier au SE qui contourne le massif et amène au pied des voies.", 1066, "Description du site de Calamès",1,3,3),("Sédour", "https://picsum.photos/seed/picsum/1000/1000","Prendre le petit sentier au milieu du parking. Il part à flanc vers la droite en direction du site des Devers du Sédour que l'on atteins en 15mn. Juste avant les devers on bifurque sur la gauche pour gravir un plan incliné assez raide en biais (balisage rouge), puis l'on se dirige en diagonal à droite sur une petite sente parmi les buis jusqu'à un épaulement et une courte vire. On est alors à gauche de la falaise inférieure. Une montée raide conduit à la falaise supérieure.",800, "Description du site de Sédour",1,3,4);
+
+
+
+#INSERT orientations
+\sql INSERT INTO orientations(nom_orientation) VALUES ("Nord"),("Sud"),("Est"),("Ouest"),("Sud-Ouest"),("Nord-Ouest"),("Sud-Est"),("Nord-Est");
+
+
+
+#INSERT secteurs
+\sql INSERT INTO secteurs(nom_secteur,image_secteur, description_secteur, image_topo_secteur, id_site, id_orientation) VALUES ("1", NULL, "Description du secteur 1 de la salle d'Altissimo", NULL, 1, NULL),("2", NULL, "Description du secteur 2 de la salle d'Altissimo", NULL, 1, NULL),("Salle numéro 1", NULL, "Description de la salle 1 chez blockout", NULL, 2, NULL),("Salle numéro 2", NULL, "Description de la salle 2 chez blockout", NULL, 2, NULL),("Les grottes", NULL, "Description du secteur des grottes du site de Calamès","http://cafma.free.fr/calames/grottes/grottes.jpg", 3, 7),("Les Murettes", NULL, "Description du secteur Les Murettes du site de Calamès","http://cafma.free.fr/calames/murettes/murettes.jpg", 3, 7),("Paroie principale", "https://picsum.photos/seed/picsum/1000/400", "Description du secteur paroie principale","http://cafma.free.fr/sedour/principal/principale.jpg",4,2),("Cimetière des Boucs","https://picsum.photos/seed/picsum/1000/400","Description du secteur cimetière des boucs","http://cafma.free.fr/sedour/boucs/boucs_sup.jpg",4,7);
+
+
+
+
+#INSERT couleurs
+\sql INSERT INTO couleurs(nom_couleur) VALUES ("bleu"),("orange"),("rose fluo"),("mauve"),("jaune"),("gris"),("vert fluo"),("rouge"),("blanc");
+
+
+#INSERT engagements
+\sql INSERT INTO engagements(niveau_engagement) VALUES ("I"),("II"),("III"),("IV");
+
+
+#INSERT etats
+\sql INSERT INTO etats(type_etat) VALUES ("praticable"),("impratiquable"),("détériorée");
+
+
+#INSERT profils
+\sql INSERT INTO profils(type_profil) VALUES ("dièdre"),("dévers"),("vertical"),("dalle");
+
+#INSERT equipements
+\sql INSERT INTO equipements(type_equipement) VALUES ("sportif"),("terrain d'aventure"),("engagé");
+
+#INSERT cotations
+\sql INSERT INTO cotations(niveau_cotation) VALUES ("4a"),("4a+"),("4b"),("4b+"),("4c"),("4c+"),("5a"),("5a+"),("5b"),("5b+"),("5c"),("5c+"),("6a"),("6a+"),("6b"),("6b+"),("6c"),("6c+"),("7a"),("7a+"),("7b"),("7b+"),("7c"),("7c+"),("8a"),("8a+"),("8b"),("8b+"),("8c"),("8c+"),("9a"),("9a+"),("9b"),("9b+"),("9c"),("9c+");
+
+
+#INSERT voies
+\sql INSERT INTO voies(nom_voie, ordre_voie, bloc_voie, ouvreur_voie, id_secteur, id_couleur, id_engagement, id_etat, id_cotation) VALUES (NULL,1,0,"Marteau Simon",1,1,NULL,1,NULL),(NULL,1,0,"Hot Sébastien",2,2,NULL,1,NULL),(NULL,2,0,"Simon Martinez",2,3,NULL,1,NULL),(NULL,1,0,"Simon Martinez",3,2,NULL,1,NULL),(NULL,1,0,"Juju la malice",4,1,NULL,1,NULL),(NULL,2,0,"Juju la malice",4,1,NULL,1,NULL),(NULL,3,0,"Juju la malice",4,2,NULL,1,NULL),(NULL,4,0,"leo poldine",4,2,NULL,1,NULL),(NULL,5,0,"Guizmo",4,3,NULL,1,NULL),(NULL,6,0,"Rem's bozdu",4,3,NULL,1,NULL),(NULL,7,0,"Juju la malice",4,3,NULL,1,NULL),(NULL,1,0,"Juju la malice",5,1,NULL,1,NULL),(NULL,2,0,"leo poldine",5,1,NULL,1,NULL),(NULL,3,0,"Juju la malice",5,3,NULL,1,NULL),("Cayenne",1,0,NULL,6,NULL,NULL,1,NULL),("OVERDOSE (variante gauche)",2,0,NULL,6,NULL,NULL,1,NULL),("OVERDOSE",3,0,NULL,6,NULL,NULL,1,NULL),("OVERDOSE (variante droite)",4,0,NULL,6,NULL,NULL,1,NULL),("La petite illusion",5,0,NULL,6,NULL,NULL,1,NULL),("La grande illusion",6,0,NULL,6,NULL,NULL,1,NULL),("Desillusion",7,0,NULL,6,NULL,NULL,1,NULL),("Même les nains ont commencé petits",8,0,NULL,6,NULL,NULL,1,NULL),("Zélopithèque",18,0,NULL,6,NULL,NULL,1,19),("Histoire de Maude",1,0,NULL,7,NULL,NULL,1,29),("Pierre",2,0,NULL,7,NULL,NULL,1,29),("Loca Luna",3,0,NULL,7,NULL,NULL,1,31),("La fantillou",4,0,NULL,7,NULL,NULL,1,30),("Suzy",5,0,NULL,7,NULL,NULL,1,33);
+
+
+#INSERT equiper
+\sql INSERT INTO equiper(id_equipement, id_voie) VALUES (1,15),(1,16),(1,17),(1,18),(1,19),(1,20),(1,21),(1,22),(1,23),(2,24),(1,25),(2,26),(1,28),(2,28),(1,27),(2,27);
+
+
+#INSERT avoir
+\sql INSERT INTO avoir(id_profil, id_voie) VALUES (1,1),(2,2),(1,3),(2,4),(1,5),(3,6),(4,7),(1,8),(2,9),(2,10),(1,11),(2,12),(3,13),(4,14),(1,15),(2,16),(4,17),(1,18),(1,19),(2,20),(4,21),(1,22),(1,23),(1,24),(2,25),(2,26),(2,27),(1,28);
+
+
+
+
+#INSERT longueurs
+\sql INSERT INTO longueurs(ordre_longueur,hauteur_longueur, id_voie,id_cotation) VALUES (1,NULL,1,15),(1,NULL,2,14),(1,NULL,3,11),(1,NULL,4,2),(1,NULL,5,9),(1,NULL,6,9),(1,NULL,7,1),(1,NULL,8,3),(1,NULL,9,1),(1,NULL,10,17),(1,NULL,11,14),(1,NULL,12,29),(1,NULL,13,11),(1,NULL,14,16),(1,30,15,NULL),(1,35,16,NULL),(1,30,17,28),(1,15,18,28),(1,25,19,24),(1,22,20,25),(1,15,21,26),(1,20,22,26),(1,NULL,23,19),(2,NULL,23,16),(1,45,24,7),(2,45,24,11),(3,45,24,10),(4,35,24,13),(5,25,24,11),(1,45,25,12),(2,30,25,12),(3,20,25,11),(4,30,25,11),(1,30,26,31),(2,20,26,13),(3,30,26,13),(4,35,26,13),(5,30,26,11),(6,25,26,13),(1,45,27,10),(2,25,27,11),(3,35,27,13),(4,35,27,11),(5,35,27,10),(6,25,27,13),(1,45,28,15),(2,35,28,13),(3,35,28,15),(4,40,28,15);
+
+
+
+#INSERT membres
+\sql INSERT INTO membres(nom_membre, prenom_membre, email_membre, mdp_membre, avatar_membre, lieu_membre, id_droit) VALUES ("nom","prenom","admin@a.com","mdp",NULL, NULL,4),("nom","prenom","ref@a.com","mdp",NULL, NULL,3),("nom","prenom","ouv@a.com","mdp",NULL, NULL,2),("a","a","a@a.com","mdp",NULL, NULL,1),("b","b","b@a.com","mdp",NULL, NULL,1);
+
+
+#INSERT noter
+\sql INSERT INTO noter VALUES (4,1,5),(4,2,5),(4,3,5),(1,1,5),(1,2,1),(2,1,5),(3,1,5),(2,2,1),(3,2,1);
+
+#INSERT droits
+\sql INSERT INTO droits(type_droit) VALUES ("membre") , ("ouvreur"), ("référenceur"), ("administrateur");
+
+#INSERT grimpeurs
+\sql INSERT INTO grimpeurs (type_grimpeur) VALUES ("débutant"), ("amateur"), ("confirmé"), ("pro");

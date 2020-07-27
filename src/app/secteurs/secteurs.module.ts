@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { SecteursPageRoutingModule } from './secteurs-routing.module';
 
 import { SecteursPage } from './secteurs.page';
+import { HistogramComponent } from './histogram/histogram.component';
 
 
 
@@ -20,6 +21,6 @@ import { SecteursPage } from './secteurs.page';
     SecteursPageRoutingModule,
    
   ],
-  declarations: [SecteursPage]
+  declarations: [SecteursPage, HistogramComponent]
 })
 export class SecteursPageModule {}

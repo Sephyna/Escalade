@@ -1,4 +1,7 @@
-export interface ISite {
+
+export interface ISite
+
+ {
 
     id : number;
     nom : string;
@@ -13,6 +16,7 @@ export interface ISite {
     cpAdresse : number;
     villeAdresse : string;
     latitude : number;
-    longitude : number
-
+    longitude : number;
 }
+
+

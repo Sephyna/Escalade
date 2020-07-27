@@ -1,0 +1,59 @@
+
+\sql CREATE TABLE IF NOT EXISTS roches(id_roche INT PRIMARY KEY NOT NULL AUTO_INCREMENT,nom_roche VARCHAR(30));
+\sql CREATE TABLE IF NOT EXISTS milieux (id_milieu INT PRIMARY KEY NOT NULL AUTO_INCREMENT,nom_milieu VARCHAR (50),artificiel_milieu BOOLEAN);
+
+\sql CREATE TABLE IF NOT EXISTS localisations(id_localisation INT PRIMARY KEY NOT NULL AUTO_INCREMENT,num_localisation INT(5) DEFAULT NULL,voie_localisation VARCHAR (255) DEFAULT NULL,cp_localisation INT(5) DEFAULT NULL,ville_localisation VARCHAR (255),lat_localisation DECIMAL(10, 8), long_localisation DECIMAL(11, 8));
+
+\sql CREATE TABLE IF NOT EXISTS sites(id_site INT PRIMARY KEY NOT NULL AUTO_INCREMENT,nom_site  VARCHAR(255),image_site VARCHAR(1024) DEFAULT NULL,acces_site TEXT(2000) DEFAULT NULL,altitude_site INT(5) DEFAULT NULL,description_site TEXT(1000) DEFAULT NULL,id_roche INT ,id_milieu INT ,id_localisation INT ,FOREIGN KEY (id_roche) REFERENCES roches(id_roche),FOREIGN KEY (id_milieu) REFERENCES milieux(id_milieu),FOREIGN KEY (id_localisation) REFERENCES localisations(id_localisation));
+
+\sql CREATE TABLE IF NOT EXISTS orientations(id_orientation INT PRIMARY KEY NOT NULL AUTO_INCREMENT,nom_orientation VARCHAR(10));
+
+\sql CREATE TABLE IF NOT EXISTS secteurs(id_secteur INT PRIMARY KEY NOT NULL AUTO_INCREMENT,nom_secteur  VARCHAR(255),image_secteur VARCHAR(1024) DEFAULT NULL,description_secteur TEXT(1000) DEFAULT NULL,image_topo_secteur VARCHAR(1024),id_site INT ,id_orientation INT  DEFAULT NULL,FOREIGN KEY (id_site) REFERENCES sites(id_site),FOREIGN KEY (id_orientation) REFERENCES orientations(id_orientation));
+
+\sql CREATE TABLE IF NOT EXISTS couleurs(id_couleur INT PRIMARY KEY NOT NULL AUTO_INCREMENT,nom_couleur VARCHAR(15));
+
+\sql CREATE TABLE IF NOT EXISTS engagements(id_engagement INT PRIMARY KEY NOT NULL AUTO_INCREMENT,niveau_engagement VARCHAR(3));
+
+\sql CREATE TABLE IF NOT EXISTS etats(id_etat INT PRIMARY KEY NOT NULL AUTO_INCREMENT,type_etat VARCHAR(15));
+
+\sql CREATE TABLE IF NOT EXISTS profils(id_profil INT PRIMARY KEY NOT NULL AUTO_INCREMENT,type_profil VARCHAR(15));
+
+\sql CREATE TABLE IF NOT EXISTS cotations(id_cotation INT PRIMARY KEY NOT NULL AUTO_INCREMENT,niveau_cotation VARCHAR(3));
+
+\sql CREATE TABLE IF NOT EXISTS voies(id_voie INT PRIMARY KEY NOT NULL AUTO_INCREMENT,nom_voie  VARCHAR(255) DEFAULT NULL,ordre_voie INT(3),bloc_voie BOOLEAN,ouvreur_voie VARCHAR(255) DEFAULT NULL,id_secteur INT ,id_couleur INT  DEFAULT NULL,id_engagement INT  DEFAULT NULL,id_etat INT ,id_cotation INT ,FOREIGN KEY (id_secteur) REFERENCES secteurs(id_secteur),FOREIGN KEY (id_couleur) REFERENCES couleurs(id_couleur),FOREIGN KEY (id_engagement) REFERENCES engagements(id_engagement),FOREIGN KEY (id_etat) REFERENCES etats(id_etat),FOREIGN KEY (id_cotation) REFERENCES cotations(id_cotation));
+
+\sql CREATE TABLE IF NOT EXISTS avoir(id_profil INT ,id_voie INT ,PRIMARY KEY (id_profil, id_voie),FOREIGN KEY (id_profil) REFERENCES profils(id_profil),FOREIGN KEY (id_voie) REFERENCES voies(id_voie));
+
+\sql CREATE TABLE IF NOT EXISTS equipements(id_equipement INT PRIMARY KEY NOT NULL AUTO_INCREMENT,type_equipement VARCHAR(20));
+
+\sql CREATE TABLE IF NOT EXISTS equiper(id_equipement INT ,id_voie INT ,PRIMARY KEY (id_equipement, id_voie),FOREIGN KEY (id_equipement) REFERENCES equipements(id_equipement),FOREIGN KEY (id_voie) REFERENCES voies(id_voie));
+
+
+\sql CREATE TABLE IF NOT EXISTS longueurs (id_longueur INT PRIMARY KEY NOT NULL AUTO_INCREMENT,ordre_longueur INT(3),hauteur_longueur INT(8),id_voie INT ,id_cotation INT  DEFAULT NULL,FOREIGN KEY (id_voie) REFERENCES voies(id_voie),FOREIGN KEY (id_cotation) REFERENCES cotations(id_cotation));
+
+\sql CREATE TABLE IF NOT EXISTS droits (id_droit INT PRIMARY KEY NOT NULL AUTO_INCREMENT,type_droit VARCHAR(15));
+
+\sql CREATE TABLE IF NOT EXISTS statuts(id_statut INT PRIMARY KEY NOT NULL AUTO_INCREMENT,type_statut VARCHAR(15));
+
+\sql CREATE TABLE IF NOT EXISTS grimpeurs(id_grimpeur INT PRIMARY KEY NOT NULL AUTO_INCREMENT,type_grimpeur VARCHAR(20));
+
+\sql CREATE TABLE IF NOT EXISTS membres(id_membre INT PRIMARY KEY NOT NULL AUTO_INCREMENT,nom_membre  VARCHAR(255),prenom_membre  VARCHAR(255),email_membre  VARCHAR(320),mdp_membre  CHAR(40),avatar_membre VARCHAR(1024) DEFAULT NULL,lieu_membre VARCHAR(255) DEFAULT NULL,id_droit INT ,id_grimpeur INT  DEFAULT NULL,FOREIGN KEY (id_droit) REFERENCES droits(id_droit),FOREIGN KEY (id_grimpeur) REFERENCES grimpeurs(id_grimpeur));
+
+\sql CREATE TABLE IF NOT EXISTS soumettre(id_voie INT ,id_membre INT ,id_statut INT ,PRIMARY KEY (id_voie, id_membre, id_statut),FOREIGN KEY (id_voie) REFERENCES voies(id_voie),FOREIGN KEY (id_membre) REFERENCES membres(id_membre),FOREIGN KEY (id_statut) REFERENCES statuts(id_statut));
+
+\sql CREATE TABLE IF NOT EXISTS signalements(id_signalement INT PRIMARY KEY NOT NULL AUTO_INCREMENT,date_signalement TIMESTAMP DEFAULT CURRENT_TIMESTAMP,commentaire_signalement TEXT(1000),id_longueur INT ,id_membre INT ,FOREIGN KEY (id_longueur) REFERENCES longueurs(id_longueur),FOREIGN KEY (id_membre) REFERENCES membres(id_membre));
+
+\sql CREATE TABLE IF NOT EXISTS ascensions(id_ascension INT PRIMARY KEY NOT NULL AUTO_INCREMENT,type_ascension VARCHAR(20));
+
+\sql CREATE TABLE IF NOT EXISTS activites(id_activite INT PRIMARY KEY NOT NULL AUTO_INCREMENT,date_activite TIMESTAMP DEFAULT CURRENT_TIMESTAMP,autoevaluation_activite INT(1) DEFAULT NULL,commentaire_activite TEXT(1000) DEFAULT NULL,duree_activite TIME DEFAULT NULL,id_ascension INT ,id_voie INT ,id_membre INT ,FOREIGN KEY (id_ascension) REFERENCES ascensions(id_ascension),FOREIGN KEY (id_voie) REFERENCES voies(id_voie),FOREIGN KEY (id_membre) REFERENCES membres(id_membre));
+
+\sql CREATE TABLE IF NOT EXISTS jugements (id_jugement INT PRIMARY KEY NOT NULL AUTO_INCREMENT,type_jugement VARCHAR(15));
+
+
+\sql CREATE TABLE IF NOT EXISTS evaluations (id_evaluation INT PRIMARY KEY NOT NULL AUTO_INCREMENT,id_longueur INT ,id_membre INT ,id_jugement INT ,FOREIGN KEY (id_longueur) REFERENCES longueurs(id_longueur),FOREIGN KEY (id_membre) REFERENCES membres(id_membre),FOREIGN KEY (id_jugement) REFERENCES jugements(id_jugement));
+
+
+\sql CREATE TABLE IF NOT EXISTS noter(id_membre INT ,id_site INT ,note INT (1),PRIMARY KEY (id_membre, id_site),FOREIGN KEY (id_membre) REFERENCES membres(id_membre),FOREIGN KEY (id_site) REFERENCES sites(id_site));
+
+
+

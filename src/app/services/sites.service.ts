@@ -41,4 +41,23 @@ export class SitesService {
 
 
   }
+
+
+  createSite (data : ISite) : Observable<ISite> {
+    this.url = 'http://127.0.0.1:8080/site/create';
+    let  headers = new HttpHeaders;
+    headers.append("Access-Control-Request-Method", 'GET');
+    headers.append("Access-Control-Request-Headers", 'Content-Type');
+    this.http.options<ISite>(this.url , {headers : headers});
+    console.log("hey");
+    headers = new HttpHeaders;
+    headers.append("Access-Control-Allow-Origin", '*');
+		headers.append("Access-Control-Allow-Methods", 'POST, GET, OPTIONS, DELETE');
+    headers.append('Content-Type', 'application/json' ); 
+    console.log(this.http.post<ISite[]>(this.url, data,{headers : headers}));
+    return this.http.post<ISite>(this.url, data,{headers : headers})
+    
+    
+    
+  }
 }

@@ -30,7 +30,13 @@ class RouterSite {
     public function getData() 
     {  
 
-        if(isset($this->getUrl()[0]) && $this->getUrl()[0] == "site"  && $this->getUrl()[1] == NULL)
+        $data = file_get_contents('php://input');
+
+        if (isset($this->getUrl()[0]) && $this->getUrl()[0] == "site"  && isset($this->getUrl()[1]) && $this->getUrl()[1] == "create") 
+        {
+                 print_r($this->getManager()->createSite($data));
+        }
+        else if(isset($this->getUrl()[0]) && $this->getUrl()[0] == "site"  && $this->getUrl()[1] == NULL)
         {
                 print_r($this->getManager()->getSites()); 
 
