@@ -39,7 +39,7 @@
 
             </ion-col>
             
-            <ion-col size="6">
+            <ion-col size="6" class="ion-text-right">
                 <ion-text *ngIf = "site.roche"><b >Type de roche : </b>  {{site.roche}} <br/></ion-text>
                 <ion-text *ngIf = "site.altitude"><b >Altitude : </b>  {{site.altitude}} <br/></ion-text>
                 <ion-text *ngIf = "site.milieu"><b >Milieu : </b>  {{site.milieu}} <br/></ion-text>
@@ -58,10 +58,10 @@
 
         <ion-toolbar>
             <ion-icon class = "ion-icon-star" size="large" name="star"></ion-icon>
+            <ion-icon class = "ion-icon-star" size="large" name="star"></ion-icon>
+            <ion-icon class = "ion-icon-star" size="large" name="star"></ion-icon>
+            <ion-icon class = "ion-icon-star" size="large" name="star-half-outline"></ion-icon>
             <ion-icon size="large" name="star"></ion-icon>
-            <ion-icon size="large" name="star"></ion-icon>
-            <ion-icon size="large" name="star-half-outline"></ion-icon>
-            <ion-icon size="large" name="star-outline"></ion-icon>
         </ion-toolbar>
 
         <ion-text> 3.75/5 (XXX Avis)</ion-text>
@@ -86,7 +86,7 @@
     </ion-card>
 
     
-    <ion-card>
+    <!-- <ion-card>
         <ion-card-header>
             <ion-card-title>Nom du secteur numéro un</ion-card-title>
             <ion-label> <b>Orientation : </b> Sud-ouest </ion-label>
@@ -101,7 +101,7 @@
 
         <div class="histogramme"><canvas id="cotations-voies"></canvas></div>
 
-    </ion-card>
+    </ion-card> -->
 
     <ion-button [hidden]="!userAuth" [routerLink]="['create-secteur']" expand="full">Créer un secteur pour ce site</ion-button>
 </ion-content>
